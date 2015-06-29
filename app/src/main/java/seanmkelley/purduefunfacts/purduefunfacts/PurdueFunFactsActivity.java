@@ -1,6 +1,7 @@
 package seanmkelley.purduefunfacts.purduefunfacts;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,6 +17,7 @@ public class PurdueFunFactsActivity extends Activity {
     private FactBook factBook = new FactBook();
     private ColorWheel colorWheel = new ColorWheel();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,11 +27,17 @@ public class PurdueFunFactsActivity extends Activity {
         final TextView factLabel = (TextView) findViewById(R.id.factTextView);
         final Button showFactButton = (Button) findViewById(R.id.showFactButton);
         final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+        int firstColor = colorWheel.getFirstColor();
+        factLabel.setText(factBook.getFact());
+        relativeLayout.setBackgroundColor(firstColor);
+        showFactButton.setTextColor(firstColor);
+
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String fact = factBook.getFact();
-                int color = colorWheel.getColor();
+                int color = colorWheel.getNewColor();
+
                 //update label with dynamic fact
                 factLabel.setText(fact);
                 relativeLayout.setBackgroundColor(color);

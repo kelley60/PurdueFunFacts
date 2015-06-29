@@ -9,12 +9,14 @@ import java.util.Random;
  */
 public class ColorWheel {
 
+    private int currentColor;
+
     public String[] colors = {
             "#000000", // black
             "#cfb53b", // old gold
     };
 
-    public int getColor(){
+    public int getFirstColor(){
 
         //button was clicked, update fact label with a new fact
         String color = "";
@@ -23,6 +25,21 @@ public class ColorWheel {
         int randomNumber = randomGenerator.nextInt(colors.length);
         color = colors[randomNumber];
         int colorAsInt = Color.parseColor(color);
+        currentColor = colorAsInt;
         return colorAsInt;
     }
+
+    public int getNewColor(){
+        int colorAsInt;
+        if (currentColor == Color.parseColor("#000000")){
+            currentColor = Color.parseColor("#cfb53b");
+            colorAsInt = currentColor;
+        }
+        else{
+            currentColor = Color.parseColor("#000000");
+            colorAsInt = currentColor;
+        }
+        return colorAsInt;
+    }
+
 }
